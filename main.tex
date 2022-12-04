@@ -1,13 +1,20 @@
 \documentclass{beamer}
 \usepackage{multirow}
-\usepackage{biblatex}
+
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{MnSymbol}
+\usepackage{IEEEtrantools}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amsmath,stackengine}
+\stackMath
+\usepackage{natbib}
+\nocite{*}
 \usetheme{Madrid}
 \title{Contagion Effect Estimate Through the Lens of Different Statistical Methods}
 \author{Brisilda Ndreka\\
-Department of Statistic\\
+Department of Statistics\\
 University of Connecticut
 } 
 \date{ December 5, 2022}
@@ -18,7 +25,7 @@ University of Connecticut
 \begin{frame}
 \frametitle{Outline}
 \begin{itemize}
-   \item  Influence model (behaviour) using dynamic linear model. 
+   \item  Influence (behaviour) model  using dynamic linear model 
      \vspace{10pt}
     \item Why is estimating contagion effect in social science considered a challenged  process?
     \vspace{10pt}
@@ -31,25 +38,30 @@ University of Connecticut
 \begin{frame}
 \frametitle{Background}
 \begin{itemize}
-    \item Contagion effect also referred as social influence effect or peer effect, is the tendency of a person or group of individuals has to follow the behaviour of some reference group that they participate.
+    \item Contagion effect, also referred as social influence effect or peer effect, is the tendency of a person or group of individuals to follow the behaviour of some reference group that they participate in.
     \vspace{10pt}
-    \item The dynamic liner model used to estimate social influence effect is referred to as behaviour model(Xu, 2018; Friedkin \& Johnsen, 1990)
-  \begin{figure}[h!]
-  \centering
-  \includegraphics[width=.8\linewidth]{mod.png} 
-\end{figure}
- $Y$ is the behavior outcome of interest, $X$ covariates that may affect behavioral outcome $Y$, $Z$ is network, $c$ is the time-invariant unobserved trait.  
+    \item The dynamic liner model used to estimate social influence effect is referred to as behaviour model \cite{XU2018101}, \cite{article}
+ \[  Y_{it}=\beta_{0}+\beta_{\stackengine{2pt}
+  {\scriptstyle 1}
+  {\scriptstyle\text{Lagged Dependent Variable}\rule[3pt]{2ex}{.5pt}\mkern-5mu\raisebox{1.3pt}
+  {\stackon[-.1pt]{\rule{.5pt}{9.1pt}}{\uparrow}}}{U}{r}{F}{T}{S}}Y_{i t-1}+\beta_{\stackengine{2pt}
+  {\scriptstyle 2}
+  {\scriptstyle\raisebox{1.1pt}{\stackon[-.1pt]{\rule{.5pt}{9.1pt}}{\uparrow}}
+  \mkern-5mu\rule[1pt]{2ex}{.5pt}\text{Contagion Effect}}{U}{l}{F}{T}{S}}
+ \frac{\Sigma Z_{ij t-1}Y_{j t-1}}{\Sigma Z_{ijt-1}}+ \beta_{3}X_{it-1}+\beta_{4}C_{i}+\epsilon_{it}.
+ \]   
+ $Y$ is the behavior outcome of interest, $X$ is the covariates that may affect behavioral outcome $Y$, $Z$ is network and $C$ is the time-invariant unobserved trait.  
 \end{itemize}
 \end{frame}
 %=================================================
 \begin{frame}
-\frametitle{Why it is Difficult to Identifying Social Influence Effect (Contagion Effect)? }
+\frametitle{Why it is Difficult to Identify Social Influence Effect (Contagion Effect)? }
 \begin{itemize}
 \item Consider the example: In daily life, friends in social networks exhibit similar personality  and behaviors. Why doe this phenomena happen? \\
-Answering this questions can result in two in two direction thinking:
+Answering this questions can result in two directions of thinking:
 \vspace{10 pt}
 \begin{itemize}
-\item Social influence effect: Individuals can influence their friends behaviour, transform their friends characteristics to be similar to theirs. 
+\item Social influence effect: Individuals can influence their friends behaviour, or transform their friends characteristics to be similar to theirs. 
 \vspace{10pt}
 \item Homophily: In which people with similar characteristics or behaviors are more likely to be friends. 
 \end{itemize}
@@ -60,13 +72,13 @@ Answering this questions can result in two in two direction thinking:
 \end{frame}
 %=================================================
 \begin{frame}
-\frametitle{This Challenge can be Treated  as  a Function of an Omitted Variable Bias }
+\frametitle{This Challenge Can be Treated  as  a Function of an Omitted Variable Bias}
 \begin{itemize}
 \item{Separating homophily from  social influence is
-a challenging process, particularly when  influence effect  is confounded with latent homophily caused by unobserved trait.}
+a challenging process, particularly when the influence effect  is confounded with latent homophily caused by unobserved trait.}
 \vspace{10pt}
 \begin{itemize}
-    \item If an unobserved variable affects behavioral model and selection process this cause estimation problems of the social influence effect (Xu, 2018; Shalizi \& Thomas 2011). Alcohol behaviour among teenager example.
+    \item If an unobserved variable affects behavioral model and selection process, this cause estimation problems of the social influence effect \cite{XU2018101}. Alcohol behaviour among teenager example.
     \begin{figure}[h!]
   \centering
   \includegraphics[width=.4\linewidth]{rx.png}
@@ -78,18 +90,19 @@ a challenging process, particularly when  influence effect  is confounded with l
 \end{frame}
 %=================================================
 \begin{frame}
-\frametitle{Estimation methods used to estimate latent variable :}
+\frametitle{Methods Used to Estimate Latent Variable }
 \begin{itemize}
-\item Considering existence of biases of the contagion effects if omitted variables in the influence/selection process exist, four estimation methods are applied: 
+\item Considering existence of biases of the contagion effects if omitted variables in the influence/selection process exist, four estimation methods are applied to estimate this latent trait: 
+\vspace{10pt}
 \begin{itemize}
 \begin{enumerate}
- \item Latent space  method (Xu, 2018).
+ \item \textbf{Latent Space Adjusted Method}  \textit{\cite{XU2018101}}.
 \vspace{10pt}
-\item SDNE: Structural Deep Network Embedding (Wang et al, 2016).
+\item \textbf{SDNE: Structural Deep Network Embedding}\textit{\cite{wang2016structural}}.
 \vspace {10pt}
-\item Node2Vec
+\item \textbf{Node2Vec} \textit{\cite{DBLP:journals/corr/GroverL16}}
 \vspace {10pt}
-\item Latent Factor Model
+\item \textbf{Latent Factor Model} \textit{\cite{minhas2019inferential}}
 \end{enumerate}
 \end{itemize}
 \vspace {10pt}
@@ -98,27 +111,27 @@ a challenging process, particularly when  influence effect  is confounded with l
 \end{frame}
 %================================================
 \begin{frame}
-\frametitle{ I: Latent Space Adjusted Approach}
+\frametitle{ 1: Latent Space Adjusted Approac}
 \begin{itemize}
-
-\item Assume the existence of an unobserved trait that co-determines influence and selection process.
+\item Assume the existence of an unobserved trait that co-determines influence and selection process
 \vspace{10pt}
-\item The information of unobserved trait from the selection proces as an estimator of the latent variable in the influence model.
-\vspace{10}
-\item  Estimation of $c$ is completed  using  "latent social positing" form the Latent space  models (Hoff, 2002), using ergmm package in R-software.
- \vspace{10pt}
-  \item  By including the latent positions as additional covariates in the behavioral model it
-will reduce the bias in the estimation of social influence effects.
-
+\item  It is based on latent space  model set up \cite{hoff2002latent} to derive "latent social positing" 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=.25\linewidth]{pff.png}
+  \caption{Latent Space Estimates / (Hoff et al, 2016)}
+  \label{fig:fig1}
+\end{figure}
+\item Adjust for the dynamic models: use latent position for all available time points as proxies for the unobserved trait
 \end{itemize}
 \end{frame}
 %================================================
 \begin{frame}
-\frametitle{ II: SDNE }
+\frametitle{2: SDNE }
 \begin{itemize}
 \item  SDNE is machine learning algorithm  with the goal of turning a graph into a computationally  absorbable format. 
 \vspace{10pt}
-\item  Network embedding intend to capture and carry out the network structure of a network structure using low-dimensional representations of vertexes in networks. 
+\item  Network embedding intends to capture and carry out the network structure of a network structure by using low-dimensional representations of vertexes in networks. 
 \vspace{10pt}
   \item   It is  a method that is
 able to effectively capture the highly non-linear network structure.
@@ -129,13 +142,13 @@ able to effectively capture the highly non-linear network structure.
 %=================================================
 
 \begin{frame}
-\frametitle{ Nde2vec}
+\frametitle{3: Node2vec}
 \begin{itemize}
-\item  Node2vec is a random walk based method, which  use a walk approach to generate (sample) network neighborhoods for nodes. 
+\item  Node2vec is a random walk based method, which  use a walk approach to generate (sample) network neighborhoods for nodes is a random walk based method which  uses a walk approach to generate (sample) network neighborhoods for nodes. 
 \vspace{10 pt}
 \item Algorithm computes a vector representation of a node based on random walks in the graph.
 \vspace{10 pt}
-\item  Two parameters control the probability of moving in the graph.
+\item  Two parameters control the probability of moving in the graph;
 \begin{itemize}
 \item return hyperparameter, p 
 \item inout hyperparameter, q 
@@ -152,63 +165,83 @@ able to effectively capture the highly non-linear network structure.
 %=================================================
 
 \begin{frame}
-\frametitle{IV: Latent Factor Model}
+\frametitle{4: Latent Factor Model}
 \begin{itemize}
 \item Each node $i$ has an unknown latent factor $c_{i}\in R^{k}$
 \vspace{10pt}
-\item The probability of a node $i$  and $j$ to form a tie depends on their latent factors
+\item The probability of the nodes $i$  and $j$ to form a tie depends on their latent factors
  \[P(Z_{ij}=1|c_{i},c_{j})=\alpha+ c_{i}^{T} \Lambda c_{j}
     \label{3},\]  $\Lambda$ a$ K\times K$ diagonal matrix.
 \vspace{10pt}
-\item To run a latent factor model, the "amen" package in R-software is used,  with dimension of the multiplicative effects 1 \& 3, which measure of how likely a pair of actors are to form an edge with one another.
+\item  Multiplicative effects, capture higher-order dependence patterns  after accounting for any known covariate information.
 
 \end{itemize}
 \end{frame}
 %=================================================
 \begin{frame}
-\frametitle{Simulation setting}
+\frametitle{Simulation Setting}
 \begin{itemize}
-\item Four estimation method  considered. Each of them estimate latent variable using  dimensions 1 and 3.
+\item Four estimation methods are considered  and each of them estimate latent variable using  dimensions of 1 and 3.
 \vspace{10pt}
-\item{Two network studied, networks with 40 nodes and a  network with 80 nodes in two time point (T) each $T=2$ and $5$.}
-\vspace{10pt}
-\item{The real value of the peer influence effect is considered taking values $\beta_{2} \in \{ 0.1, 0.4, 0.7\}$ }, presenting respectively low-homofoly, mid-homofoly, high-homofoly.
-\vspace{10pt}
-\item{Two models involved are:}
+\item Statistical software packages to accomplish the analysis for each presented methods:
 \begin{itemize}
-    \item  Influlence moddel: \[  Y_{it}=\beta_{0}+\beta_{1}Y_{i t-1}+\beta_{2} \frac{\Sigma Z_{ij t-1}Y_{j t-1}}{\Sigma Z_{ijt-1}}+ \beta_{3}X_{it-1}+\beta_{4}c_{i}+\epsilon_{it}.\] 
+\item  latent-space adjusted : \textit{ergm} package withR  \textit{\cite{your-key-here}}
+\vspace{5pt}
+\item latent-factor: \textit{AMEN} with R  \textit{\cite{https://doi.org/10.48550/arxiv.1506.08237}}
+\vspace{5pt}
+\item Node2vec: \textit{node2vec}, python3 \textit{\cite{DBLP:journals/corr/GroverL16}}
+\vspace{5pt}
+\item SDNE: \textit{EasyGraph0.2} with Python 
+\href{https://easygraph.github.io/docs/reference/graph_embedding.html}{source information can  be found here}
+\end{itemize}
 
-\item{Selection model:}
- \[ P(Z_{ij}=1|c_{i},c_{j},x_{ij},\alpha, \beta)= \Phi(\alpha+\beta |X_{i}-X_{j}|-|C_{i}-C_{j}|)
+\vspace{10pt}
+\item{Networks studied, small networks with 40 nodes and  with 80 nodes, number of time points  $T=2$ and $5$}
+\end{itemize}
+\end{frame}
+%=================================================
+\begin{frame}
+\begin{itemize}
+\item{The real value of the peer influence effect and lagged dependent variable, are considered when of $\beta_{1}, \beta_{2} \in \{ 0.1, 0.4, 0.7\}$ }
+\vspace{10pt}
+\item Level of homophily based on the unobserved trait considered relatively high with $\alpha_{2}=0.4$.
+\vspace{10pt}
+\item{After estimating latent trait $C$, use it as proxy in the influence model to define contagion effect}
+\begin{itemize}
+    \item  Influlence moddel: \[  Y_{it}=\beta_{0}+\beta_{1}Y_{i t-1}+\beta_{2} \frac{\Sigma Z_{ij t-1}Y_{j t-1}}{\Sigma Z_{ijt-1}}+ \beta_{3}X_{it-1}+\beta_{4}C_{i}+\epsilon_{it}.\] 
+
+\item{Social networks were generated using  selection model:}
+ \[ P(Z_{ij}=1|c_{i},c_{j},x_{ij},\alpha, \beta)= \Phi(\alpha+\alpha_{1}|X_{i}-X_{j}|-\alpha_{2}|C_{i}-C_{j}|)
     \label{eq.4}\]
+ 
 \end{itemize}
+   \item The metric used to compare methods’ performances is the peer effect and lagged dependent variable bias. 
 \end{itemize}
 \end{frame}
 %=================================================
 \begin{frame}
-\frametitle{Simulation results: Contagion effect }
+\frametitle{Simulation Results: Contagion Effect }
 \begin{figure}[H]
   \centering
-  \includegraphics[width=10 cm, height=7cm ]{Rplot03after_expo.pdf}
+  \includegraphics[width=10 cm, height=7cm ]{plot1.pdf}
   \caption{ Bias Distribution for Contagion Effect}
   \label{Fig:fig1}
 \end{figure}
-
 \end{frame}
 %=================================================
 \begin{frame}
-\frametitle{ Results interpretation}
+\frametitle{ Results Interpretation}
 \begin{itemize}
 \item  The magnitude of bias is smaller for
 all estimation methods when we include more time points (T =5 bias estimate smaller than T=2).
 \vspace{10pt}
-\item Latent space estimates bets-perform compare to other methods in terms of estimating contagion effects, leading in smallest bias.
+\item Latent space estimates bets-perform compare to other methods in terms of estimating contagion effects, as it leads to the smallest bias.
 \vspace{10pt}
-\item Overall,  Node2Vec estimates have small
-bias, but performance is  better when contagion effect is small, (presence of low level of homofoly) and network size. Moving in larger network method decreases the performance. 
+\item Overall, Node2Vec estimates have small
+bias, but performance is  better when peer effect and network size is small. Moving to larger network method decreases the performance. 
 \vspace{10pt}
 \item Latent factor estimates are more unstable,
-with higher bias mostly for small dimension and small time points. Performance improved when this two factors increased.
+as they have  higher bias mostly for small dimension and small time points. Performance improved when these two factors increased.
 \end{itemize}
 \end{frame}
 %=================================================
@@ -221,16 +254,16 @@ with higher bias mostly for small dimension and small time points. Performance i
 \item Fixed effects estimates produce the
 biggest bias among all estimators.
 \vspace{10pt}
-\item We should point out that  the latent space and latent factor model require a large computing time, since both methods use MCMC (Marcov Chain Monte Carlo Algorithm) estimation process.
+\item We should point out that  the latent space and latent factor model require a large computing time, since both methods use MCMC (Marcov Chain Monte Carlo Algorithm) in the estimation process.
 \end{itemize}
 \end{frame}
 
 %=================================================
 \begin{frame}
-\frametitle{Simulation Results: Latent Trait Estimation Also Help With Reducing Bias of $Y_{t-1}$ also.  }
+\frametitle{Simulation Results: Lagged Dependent Variable Bias.  }
 \begin{figure}[H]
   \centering
-  \includegraphics[width=10cm, height=7cm]{prior new_.pdf}
+  \includegraphics[width=10cm, height=7cm]{plot2.pdf}
   \caption{Bias Distribution for Coefficient of Lagged Dependent Variable}
   \label{Fig:fig2}
 \end{figure}
@@ -238,80 +271,25 @@ biggest bias among all estimators.
 
 %=================================================
 \begin{frame}
-\frametitle{ Simulation interpretation: }
+\frametitle{Results Interpretation: }
 \begin{itemize}
-\item Latent space adjusted approach produces much smaller bias in estimating the independent variable $Y_{n-1}$ (previous behaviour) compare to other methods.
+\item Latent space adjusted approach produces much smaller bias in estimating the lagged independent variable  (previous behaviour) compared to other methods.
 \vspace{10pt}
 \item As in the contagion effect the bias  value is smaller for all estimation methods when we include more time points (compare for T=2 \& T=5).
 \vspace{10pt}
 
-\item Latent factor estimates show small bias when the true coefficient large $\beta_{1}=0.7$, but is unstable for other scenarios.
+\item Latent factor estimates show small bias when the true coefficient large , but is unstable for other scenarios.
 \vspace{10pt}
-\item Fixed effects estimates have the larger bias and are always negatively biased.
+\item Fixed effects estimates are always negatively biased and unfavorable in dynamic netwrok analysis.
 \vspace{10pt}
 \item In general Node2vec estimates  produce a small bias in contradiction to SDNE that was more efficient with contagion estimate. 
 \end{itemize}
 \end{frame}
 %=================================================
-\begin{frame}
-\frametitle{Reference}
-\begin{thebibliography}{10}
-\begin{tiny}
-\bibitem{minhas_hoff_ward_2019}
-\alert{Sh. Minhas and P. D. Hoff and M. D. Ward }
-\newblock  {Inferential Approaches for Network Analysis: AMEN for Latent Factor Models}
-\newblock {\em  Political Analysis; 208–222, 2019. }
-\bibitem{XU2018101}
-\alert{R. Xu}
-\newblock  {Alternative estimation methods for identifying contagion effects in dynamic social networks: A latent-space adjusted approach}
-\newblock {\em Social Networks; 101-117, 2018}.
-
-\bibitem{Friedkin1990SocialIA}
-\alert{N. E. Friedkin and E. Johnsen}
-\newblock {Social influence and opinions}
-\newblock {\em Journal of Mathematical Sociology; 193-206, 1990. }
-\bibitem{doi:10.1198/016214502388618906}
-\alert{P. D. Hoff and A. E. Raftery and M. S. Handcock}
-\newblock  {Latent Space Approaches to Social Network Analysis}
-\newblock {\em Journal of the American Statistical Association; 1090-1098, 2002.}
-
-\bibitem{RJ-2021-069}
-\alert{R. Xu}
-\newblock  {Estimating Social Influence Effects in Networks Using a Latent Space Adjusted Approach in R}
-\newblock {\em The R Journal; 57-69, 2021.}
-\bibitem{doi:10.1177/0049124111404820}
-\alert{C. R. Shalizi and A. C. Thomas}
-\newblock {Homophily and Contagion Are Generically Confounded in Observational Social Network Studies}
-\newblock {\em Sociological Methods \& Research; 211-239, 2011.}
-
-\bibitem{DBLP:journals/corr/GroverL16}
-\alert{A. Grover and J. Leskovec}
-\newblock  {node2vec: Scalable Feature Learning for Networks}
-\newblock {\em CoRR; abs/1607.00653, 2016.}
-
-\bibitem{10.1145/2939672.2939753}
-\alert{ D.Wang and P. Cui and  W. Zhu}
-\newblock  {Structural Deep Network Embedding}
-\newblock {\em Association for Computing Machinery; 1225–1234, 2016.}
-\newpage
-
-\bibitem{}
-\alert{ }
-\newblock  {}
-\newblock {\em }
-
-\bibitem{}
-\alert{ }
-\newblock  {}
-\newblock {\em }
-
-
-\bibitem{}
-\alert{ }
-\newblock  {}
-\newblock {\em }
-\end{tiny}
-\end{thebibliography}
+\begin{frame} [allowframebreaks]{Reference}
+%\printbibliography
+\small\bibliography{ref}
+\bibliographystyle{plainnat}
 \end{frame}
-%=================================================
 \end{document}
+%=================================================
